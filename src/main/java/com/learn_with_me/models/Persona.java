@@ -4,7 +4,7 @@ package com.learn_with_me.models;
 import java.time.LocalDate;
 
 public class Persona {
-    private String idPersona;
+  
     private String nombreCompleto;
     private String apellidoCompleto;
     private String DNI;
@@ -15,7 +15,7 @@ public class Persona {
     }
 
     public Persona(String idPersona, String nombreCompleto, String apellidoCompleto, String DNI, String mail, LocalDate fechaNacimiento) {
-        this.idPersona = idPersona;
+       
         this.nombreCompleto = nombreCompleto;
         this.apellidoCompleto = apellidoCompleto;
         this.DNI = DNI;
@@ -23,13 +23,6 @@ public class Persona {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public String getIdPersona() {
-        return idPersona;
-    }
-
-    public void setIdPersona(String idPersona) {
-        this.idPersona = idPersona;
-    }
 
     public String getNombreCompleto() {
         return nombreCompleto;
