@@ -2,8 +2,11 @@ package com.learn_with_me.controller;
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +27,7 @@ public class AlumnoController {
 		
 	Alumno alumno = new Alumno();
 	
-	alumno.setApellidoCompleto("vergas");
+	alumno.setApellidoCompleto("vargas");
 	alumno.setNombreCompleto("leonardo");
 	alumno.setDni("12546587");
 	alumno.setMail("leehdhd@gmail.com");
@@ -36,7 +39,14 @@ public class AlumnoController {
 	
 	return this.alumnoService.registrarAlumno(alumno);
 		
+	}
+	
+	@GetMapping("/listaAlumnos")
+	public List<Alumno> listaAlumnos() {
+		return alumnoService.listaAlumnos();
 		
 	}
+	
+		
 
 }
