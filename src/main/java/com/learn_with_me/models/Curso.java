@@ -2,53 +2,42 @@ package com.learn_with_me.models;
 
 import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+@Entity
+@Data
+@NoArgsConstructor
+@Table(name = "cursos")
 public class Curso {
-    private String idCurso;
+	
+ 
+    
+    @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id_Curso;
     private String nombreCurso;
     private Integer cantidadVideos;
-    private List<Video> videos;
-
-    public Curso() {
-    }
-
-    public Curso(String idCurso, String nombreCurso, Integer cantidadVideos, List<Video> videos) {
-        this.idCurso = idCurso;
-        this.nombreCurso = nombreCurso;
-        this.cantidadVideos = cantidadVideos;
-        this.videos = videos;
-    }
-
-    public String getIdCurso() {
-        return idCurso;
-    }
-
-    public void setIdCurso(String idCurso) {
-        this.idCurso = idCurso;
-    }
-
-    public String getNombreCurso() {
-        return nombreCurso;
-    }
-
-    public void setNombreCurso(String nombreCurso) {
-        this.nombreCurso = nombreCurso;
-    }
-
-    public Integer getCantidadVideos() {
-        return cantidadVideos;
-    }
-
-    public void setCantidadVideos(Integer cantidadVideos) {
-        this.cantidadVideos = cantidadVideos;
-    }
-
-    public List<Video> getVideos() {
-        return videos;
-    }
-
-    public void setVideos(List<Video> videos) {
-        this.videos = videos;
-    }
     
+    @ManyToOne 
+    private Profesor profe;
+    
+	@OneToMany (mappedBy = "cursos")
+	private List<Inscripcion> inscrip;	
+    
+    public Curso(Integer id_Curso, String nombreCurso, Integer cantidadVideos) {
+		super();
+		this.id_Curso = id_Curso;
+		this.nombreCurso = nombreCurso;
+		this.cantidadVideos = cantidadVideos;
+	}
     
 }

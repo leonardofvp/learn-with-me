@@ -17,29 +17,22 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name="alumnos")
-public class Alumno extends Persona{
-	
+@Table(name = "profesores")
+public class Profesor extends Persona {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_alumno;
-	private String matricula;
-	private Boolean certificado;
+	private Integer id_profesor;
+	private String curso;
 	
-	@OneToMany (mappedBy = "alumnos")
-	private List<Inscripcion> inscrip;	
-	
-	
-	
-    public Alumno(String nombreCompleto, String apellidoCompleto, String dni, String mail, LocalDate fechaNacimiento,
-			String pais, String estado, String matricula, Boolean certificado) {
-		super(nombreCompleto, apellidoCompleto, dni, mail, fechaNacimiento, pais, estado);
-		this.matricula = matricula;
-		this.certificado = certificado;
-	}
-    
-	
+	@OneToMany (mappedBy = "profe")
+	private List<Curso> cursos;	
 
-    
+	public Profesor(String nombreCompleto, String apellidoCompleto, String dni, String mail, LocalDate fechaNacimiento,
+			String pais, String estado, Integer id_profesor, String curso) {
+		super(nombreCompleto, apellidoCompleto, dni, mail, fechaNacimiento, pais, estado);
+		this.id_profesor = id_profesor;
+		this.curso = curso;
+	}
 
 }
