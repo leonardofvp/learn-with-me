@@ -7,5 +7,5 @@ import com.learn_with_me.models.Alumno;
 
 @Repository
 public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
-
+    
 }
