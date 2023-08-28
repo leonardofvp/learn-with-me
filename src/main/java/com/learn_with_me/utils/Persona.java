@@ -19,9 +19,11 @@ public class Persona {
     private String apellidoCompleto;
     private String dni;
     private String mail;
+    private String password;
     private LocalDate fechaNacimiento;
     private String pais;
     private String estado;
+    private String rol;
 
  
 }

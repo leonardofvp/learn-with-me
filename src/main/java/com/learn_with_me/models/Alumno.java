@@ -30,16 +30,16 @@ public class Alumno extends Persona{
 	private List<Inscripcion> inscrip;	
 	
 	
-	
-    public Alumno(String nombreCompleto, String apellidoCompleto, String dni, String mail, LocalDate fechaNacimiento,
-			String pais, String estado, String matricula, Boolean certificado) {
-		super(nombreCompleto, apellidoCompleto, dni, mail, fechaNacimiento, pais, estado);
+
+	public Alumno(String nombreCompleto, String apellidoCompleto, String dni, String mail, String password,
+			LocalDate fechaNacimiento, String pais, String estado, String rol, Integer id_alumno, String matricula,
+			Boolean certificado, List<Inscripcion> inscrip) {
+		super(nombreCompleto, apellidoCompleto, dni, mail, password, fechaNacimiento, pais, estado, rol);
+		this.id_alumno = id_alumno;
 		this.matricula = matricula;
 		this.certificado = certificado;
+		this.inscrip = inscrip;
 	}
-    
-	
-
-    
+   
 
 }

@@ -40,4 +40,10 @@ public class AlumnoService {
 		}
 		
 	}
+
+	//para la validacion simple del registro
+
+	public Alumno buscarPorEmail(String email){
+		return alumnoRepository.findByMail(email);
+	}
 }

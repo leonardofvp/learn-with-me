@@ -28,11 +28,15 @@ public class Profesor extends Persona {
 	@OneToMany (mappedBy = "profe")
 	private List<Curso> cursos;	
 
-	public Profesor(String nombreCompleto, String apellidoCompleto, String dni, String mail, LocalDate fechaNacimiento,
-			String pais, String estado, Integer id_profesor, String curso) {
-		super(nombreCompleto, apellidoCompleto, dni, mail, fechaNacimiento, pais, estado);
+	public Profesor(String nombreCompleto, String apellidoCompleto, String dni, String mail, String password,
+			LocalDate fechaNacimiento, String pais, String estado, String rol, Integer id_profesor, String curso,
+			List<Curso> cursos) {
+		super(nombreCompleto, apellidoCompleto, dni, mail, password, fechaNacimiento, pais, estado, rol);
 		this.id_profesor = id_profesor;
 		this.curso = curso;
+		this.cursos = cursos;
 	}
+
+	
 
 }
