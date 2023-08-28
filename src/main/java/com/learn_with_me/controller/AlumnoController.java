@@ -56,7 +56,7 @@ public class AlumnoController {
 		return alumno;
 	}	
 	
-	@DeleteMapping("/alumno/{id}")
+	@DeleteMapping("/eliminarAlumnoPorId/{id}")
 	public String eliminarPorId(@PathVariable int id){
 		boolean eliminado = alumnoService.eliminarPorId(id);
 		if (eliminado) {
