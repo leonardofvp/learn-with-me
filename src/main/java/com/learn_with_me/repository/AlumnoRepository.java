@@ -9,6 +9,7 @@ import com.learn_with_me.models.Alumno;
 public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
 
     boolean existsByMail(String  mail);
+    
     Alumno findByMail(String mail);
    
     

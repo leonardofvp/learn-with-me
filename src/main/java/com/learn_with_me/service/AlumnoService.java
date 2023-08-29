@@ -46,4 +46,9 @@ public class AlumnoService {
 	public Alumno buscarPorEmail(String email){
 		return alumnoRepository.findByMail(email);
 	}
+
+	// actualizar por id
+	public void actualizarAlumno(Alumno alum) {
+		alumnoRepository.save(alum);
+	}
 }
