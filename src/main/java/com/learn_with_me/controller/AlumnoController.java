@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.learn_with_me.models.Alumno;
 import com.learn_with_me.repository.AlumnoRepository;
 import com.learn_with_me.service.AlumnoService;
+import com.learn_with_me.utils.Rol;
 
 @RestController
 @RequestMapping("/alumno")
@@ -50,11 +51,13 @@ public class AlumnoController {
 	@PostMapping("/registro")
 	public ResponseEntity<String> registrarAlumno(@RequestBody Alumno alumno) {
 
+		alumno.setRol(Rol.PROFESOR);
+
 		if(alumnoRepository.existsByMail(alumno.getMail())){
 			return new ResponseEntity<String>("usuario ya existe", HttpStatus.BAD_REQUEST);
 		}
 
-		if(alumno.getRol().equalsIgnoreCase("profesor")){
+		if(alumno.getRol() == Rol.PROFESOR){
 			alumno.setMatricula("LWMP");
 		}else{
 			alumno.setMatricula("LWMA");
