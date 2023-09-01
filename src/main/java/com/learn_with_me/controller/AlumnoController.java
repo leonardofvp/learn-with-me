@@ -61,7 +61,6 @@ public class AlumnoController {
 
 		}
 
-	
 		alumno.setCertificado(false);
 		
 		alumnoService.registrarAlumno(alumno);
