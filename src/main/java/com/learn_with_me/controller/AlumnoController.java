@@ -51,7 +51,7 @@ public class AlumnoController {
 	@PostMapping("/registro")
 	public ResponseEntity<String> registrarAlumno(@RequestBody Alumno alumno) {
 
-		alumno.setRol(Rol.PROFESOR);
+		alumno.setRol(Rol.ALUMNO);
 
 		if(alumnoRepository.existsByMail(alumno.getMail())){
 			return new ResponseEntity<String>("usuario ya existe", HttpStatus.BAD_REQUEST);
@@ -61,7 +61,6 @@ public class AlumnoController {
 			alumno.setMatricula("LWMP");
 		}else{
 			alumno.setMatricula("LWMA");
-
 		}
 
 		alumno.setCertificado(false);
