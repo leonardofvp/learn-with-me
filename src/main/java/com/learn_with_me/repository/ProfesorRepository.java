@@ -4,14 +4,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.learn_with_me.models.Alumno;
+import com.learn_with_me.models.Profesor;
 
 @Repository
-public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
+public interface ProfesorRepository extends JpaRepository<Profesor, Integer> {
 
     boolean existsByMail(String  mail);
     
-    Alumno findByMail(String mail);
+    Profesor findByMail(String mail);
    
     //obtener el id del ultimo registro de la tabla alumno
     @Query(value = "SELECT id_alumno FROM alumnos ORDER BY id_alumno DESC LIMIT 1", nativeQuery = true)
