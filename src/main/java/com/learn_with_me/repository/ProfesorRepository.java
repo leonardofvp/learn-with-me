@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.learn_with_me.models.Profesor;
+import com.learn_with_me.models.entity.Profesor;
 
 @Repository
 public interface ProfesorRepository extends JpaRepository<Profesor, Integer> {

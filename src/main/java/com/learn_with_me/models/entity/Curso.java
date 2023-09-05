@@ -1,4 +1,4 @@
-package com.learn_with_me.models;
+package com.learn_with_me.models.entity;
 
 import java.util.List;
 

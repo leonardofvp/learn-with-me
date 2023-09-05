@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.learn_with_me.execptions.MiException;
-import com.learn_with_me.models.Alumno;
-import com.learn_with_me.models.Profesor;
+import com.learn_with_me.models.entity.Alumno;
+import com.learn_with_me.models.entity.Profesor;
 import com.learn_with_me.modelsRequest.UsuarioRegistro;
 import com.learn_with_me.repository.AlumnoRepository;
 import com.learn_with_me.repository.ProfesorRepository;
@@ -54,6 +54,7 @@ public class AuthController {
         return new ResponseEntity<String>("Usuario o clave incorrecta ", HttpStatus.BAD_REQUEST);
     }
 
+    
     @PostMapping("/registro")
     public ResponseEntity<String> registrarAlumno(@RequestBody @Valid UsuarioRegistro usuario) {
         
@@ -97,7 +98,7 @@ public class AuthController {
             alumno.setEstado("registrado");
             alumno.setMatricula("LWMA-" + String.valueOf(num_matriculaAlumno));
             alumnoService.registrarAlumno(alumno);
-            return new ResponseEntity<String>(" Alumno registrado con exito", HttpStatus.ACCEPTED);
+            return new ResponseEntity<String>(" Alumno registrado con exito", HttpStatus.OK);
 
         }else if(rolRquest.equalsIgnoreCase(tipo1)){
             

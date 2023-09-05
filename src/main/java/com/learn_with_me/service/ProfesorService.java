@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.learn_with_me.models.Profesor;
+import com.learn_with_me.models.entity.Profesor;
 import com.learn_with_me.repository.ProfesorRepository;
 
 @Service

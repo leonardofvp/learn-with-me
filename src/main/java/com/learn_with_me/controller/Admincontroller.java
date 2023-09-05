@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.learn_with_me.models.Alumno;
+import com.learn_with_me.models.entity.Alumno;
 import com.learn_with_me.repository.AlumnoRepository;
 import com.learn_with_me.service.AlumnoService;
 

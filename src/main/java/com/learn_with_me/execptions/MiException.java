@@ -7,7 +7,11 @@ import lombok.Getter;
 @Getter
 public class MiException extends Exception{
 
-    private String mensaje;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String mensaje;
     private HttpStatus status;
 
     public MiException(String mensaje, HttpStatus status) {

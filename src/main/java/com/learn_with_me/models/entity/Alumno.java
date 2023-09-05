@@ -1,9 +1,9 @@
-package com.learn_with_me.models;
+package com.learn_with_me.models.entity;
 
 import java.time.LocalDate;
 import java.util.List;
 
-
+import com.learn_with_me.modelsRequest.UsuarioRegistro;
 import com.learn_with_me.utils.Persona;
 
 import jakarta.persistence.Entity;
@@ -32,6 +32,7 @@ public class Alumno extends Persona{
 	
 	@OneToMany (mappedBy = "alumnos")
 	private List<Inscripcion> inscrip;
+	
 
 	public Alumno(String nombreCompleto, String apellidoCompleto, String dni, String mail, String password,
 			LocalDate fechaNacimiento, String pais, String rol, Integer id_alumno, String matricula, Boolean certificado,
@@ -40,6 +41,12 @@ public class Alumno extends Persona{
 		this.id_alumno = id_alumno;
 		this.certificado = certificado;
 		this.inscrip = inscrip;
+	}
+	
+	public Alumno(UsuarioRegistro usuario) {
+		
+		this.setApellidoCompleto(usuario.getApellidoCompleto());
+		
 	}
 
 	
