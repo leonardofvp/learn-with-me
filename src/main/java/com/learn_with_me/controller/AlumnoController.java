@@ -66,7 +66,7 @@ public class AlumnoController {
 		alumno.setCertificado(false);
 		
 		alumnoService.registrarAlumno(alumno);
-		return new ResponseEntity<String>("usuario registrado con exito", HttpStatus.ACCEPTED);
+		return new ResponseEntity<String>("usuario registrado con exito", HttpStatus.OK);
 
 	}
 
