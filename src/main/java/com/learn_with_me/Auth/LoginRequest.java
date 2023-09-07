@@ -1,4 +1,4 @@
-package com.learn_with_me.modelsRequest;
+package com.learn_with_me.Auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

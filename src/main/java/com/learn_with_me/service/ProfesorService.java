@@ -1,35 +1,49 @@
 package com.learn_with_me.service;
 
 import java.util.List;
+import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.learn_with_me.models.entity.Profesor;
 import com.learn_with_me.repository.ProfesorRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class ProfesorService {
 	
-	@Autowired
-	private ProfesorRepository profesorRepository;
+	
+	private final ProfesorRepository profesorRepository;
 	
 	
-	public Profesor registrarProfesor(Profesor prof) {
+	
+	public Profesor registrarProfesor(Profesor profesor) {
 		
-		return this.profesorRepository.save(prof);
+		return this.profesorRepository.save(profesor);
 	}
 	
 	
-	public List< Profesor> listarProfesores() {
+	public List< Profesor> listaProfesores() {
 		
 		return this.profesorRepository.findAll();
 	}
-	
-	public Profesor buscarPorId(int id){
-		Profesor profesor = profesorRepository.findById(id).get();
-		return profesor;
+	/*
+	public Alumno buscarPorId(int id){
+		Alumno alumno = alumnoRepository.findById(id).get();
+		return alumno;
 	}
+	*/
+	
+	 public Optional<Profesor> buscarPdofesorPorId(Integer id) {
+	        return profesorRepository.findById(id);
+	    }
+
+	public boolean profesorExiste(String username) {
+	        Optional<Profesor> optionalAlumno = profesorRepository.findByUsername(username);
+	        return optionalAlumno.isPresent();
+	    }
+	
 	
 	public boolean eliminarPorId(int id){
 		if (profesorRepository.existsById(id)) {
@@ -41,13 +55,6 @@ public class ProfesorService {
 		
 	}
 
-	//para la validacion simple del registro
-	public Profesor buscarPorEmail(String email){
-		return profesorRepository.findByMail(email);
-	}
 
-	// actualizar por id
-	public void actualizarProfesorPorId(Profesor prof) {
-		profesorRepository.save(prof);
-	}
+	
 }

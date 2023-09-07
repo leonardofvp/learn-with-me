@@ -2,6 +2,7 @@ package com.learn_with_me.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,8 +49,8 @@ public class Admincontroller {
                                                                  // como argumento al método.
 
         if (alumnoRepository.existsById(id)) {
-            Alumno alumno = alumnoService.buscarPorId(id);
-            return new ResponseEntity<Alumno>(alumno, HttpStatus.ACCEPTED);
+            Optional<Alumno> alumno = alumnoService.buscarAlumnoPorId(id);
+            return new ResponseEntity<Optional<Alumno>>(alumno, HttpStatus.ACCEPTED);
         }
         return new ResponseEntity<String>("Usuario no existe", HttpStatus.BAD_REQUEST);
 
