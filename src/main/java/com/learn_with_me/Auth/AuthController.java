@@ -35,6 +35,7 @@ public class AuthController {
 		 * HttpStatus.BAD_REQUEST);
 		 */
 	}
+	
 
 	@PostMapping("/registro")
 	public ResponseEntity<?> registrarAlumno(@RequestBody @Valid RegisterRequest request) {

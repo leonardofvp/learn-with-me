@@ -22,9 +22,9 @@ public class Tarea {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_tarea;
 
-	private String tareasTotales;
-	private String tareasCumplidas;
-	private String tareasRestantes;
+	private Integer tareasTotales;
+	private Integer tareasCumplidas;
+	private Integer tareasRestantes;
 	
 	@ManyToOne 
     @JoinColumn(name="id_curso")
