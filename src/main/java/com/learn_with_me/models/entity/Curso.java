@@ -34,7 +34,7 @@ public class Curso {
     private Integer cantidadVideosVistos;
     private Integer cantidadVideosRestantes;
     private Integer cantidadVideosTotal;
-
+    private String tipoDeAprendizaje;
     
     @ManyToOne
     @JoinColumn(name="id_profesor")
