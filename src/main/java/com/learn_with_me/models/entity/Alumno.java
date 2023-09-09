@@ -1,20 +1,19 @@
 package com.learn_with_me.models.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.learn_with_me.utils.Persona;
 import com.learn_with_me.utils.Role;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -42,30 +41,28 @@ public class Alumno extends Persona {
 	private Boolean certificado;
 	private String estado;
 	
-	@OneToMany (mappedBy = "alumnos" , fetch = FetchType.LAZY)
+	@OneToMany (mappedBy = "alumno"  , cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Inscripcion> inscrip;
 	
 	
-	@ManyToOne
-    @JoinColumn(name = "id_Imagen") // Nombre de la columna de clave foránea en la tabla de alumnos
-    private Imagen imagen;
+	@OneToMany (mappedBy = "alumno"  ,cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Test> Tests;
+	
+	@OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnore
+	private List<Imagen> imagenes = new ArrayList<>();
 
 
 	public Alumno(String nombreCompleto, String apellidoCompleto, String dni, String username, String password,
 			LocalDate fechaNacimiento, String pais, String matricula, Role role, Integer id_alumno, Boolean certificado,
-			String estado, List<Inscripcion> inscrip, Imagen imagen) {
+			String estado, List<Inscripcion> inscrip, List<Test> tests) {
 		super(nombreCompleto, apellidoCompleto, dni, username, password, fechaNacimiento, pais, matricula, role);
 		this.id_alumno = id_alumno;
 		this.certificado = certificado;
 		this.estado = estado;
 		this.inscrip = inscrip;
-		this.imagen = imagen;
+		Tests = tests;
 	}
-
-	
-
-
-	
 	
 	
 	

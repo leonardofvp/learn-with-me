@@ -18,14 +18,23 @@ public class Inscripcion {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_Inscripcion;
+	private Integer id_inscripcion;
 	
 	@ManyToOne
 	@JoinColumn(name="id_curso")
-	private Curso cursos;
+	private Curso curso;
 	
 	@ManyToOne
-	@JoinColumn(name="id_alum")
-	private Alumno alumnos;
+	@JoinColumn(name="id_alumno")
+	private Alumno alumno;
+
+	public Inscripcion(Integer id_inscripcion, Curso curso, Alumno alumno) {
+		super();
+		this.id_inscripcion = id_inscripcion;
+		this.curso = curso;
+		this.alumno = alumno;
+	}
+	
+	
 
 }

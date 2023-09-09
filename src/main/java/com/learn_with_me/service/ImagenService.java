@@ -22,7 +22,7 @@ public class ImagenService {
 
 	private final ImagenRepository imagenRepository;
 
-	public Imagen guardarImagen() { // Este es el tipo de archivo en el q se almacena la imagen
+	public Imagen crearImagenDefault() { // Este es el tipo de archivo en el q se almacena la imagen
 
 		// para la img
 		String imagePath = "img/default.png";
@@ -30,8 +30,9 @@ public class ImagenService {
 		Resource resource = new ClassPathResource(imagePath);
 
 		Imagen imagen = new Imagen();
-		imagen.setMime(".jpg");
+		imagen.setMime("image/jpeg");
 		imagen.setNombre(resource.getFilename());
+		
 		
 		try {
 			//imagen.setContenido(Files.readAllBytes(resource.getFile().toPath()));
@@ -41,11 +42,9 @@ public class ImagenService {
 			e.printStackTrace();
 		}
 		
-		System.out.println(imagen.getMime());
-		System.out.println(imagen.getNombre());
-		System.out.println(imagen.getContenido());
+		
 
-		imagenRepository.save(imagen);
+		//imagenRepository.save(imagen);
 
 		return imagen;
 

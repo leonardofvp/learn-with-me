@@ -16,7 +16,7 @@ public interface ProfesorRepository extends JpaRepository<Profesor, Integer> {
   
    
     //obtener el id del ultimo registro de la tabla alumno
-    @Query(value = "SELECT id_alumno FROM alumnos ORDER BY id_alumno DESC LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT id_profesor FROM profesores ORDER BY id_profesor DESC LIMIT 1", nativeQuery = true)
     Integer ultimoId();
     
 }

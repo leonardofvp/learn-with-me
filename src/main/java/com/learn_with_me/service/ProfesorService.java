@@ -56,5 +56,16 @@ public class ProfesorService {
 	}
 
 
+	public int ultimoIdRegistrado() {
+		Integer id = profesorRepository.ultimoId();
+		 if(id == null) {
+			 
+			 id=0;
+			 
+		 }
+			return id;
+	}
+
+
 	
 }

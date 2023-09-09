@@ -32,7 +32,7 @@ public class SecurityConfig {
 		            .authorizeHttpRequests(authRequest ->
 		              authRequest
 		                .requestMatchers("/auth/**").permitAll()
-		                .anyRequest().authenticated()
+		                .anyRequest().permitAll()
 		                )
 		            .sessionManagement(sessionManager->
 		                sessionManager 
@@ -43,3 +43,14 @@ public class SecurityConfig {
 	}
 }
 	 
+
+/*
+ *  .requestMatchers("/auth/**").permitAll()
+		                .requestMatchers("/notificacion/recibirEmail").permitAll()
+		                .requestMatchers("/test/guardarTest/**").permitAll()
+		                .anyRequest().authenticated()
+		                
+		                 .requestMatchers("/notificacion/recibirEmail").permitAll()
+		                .requestMatchers("/test/guardarTest/**").permit
+ * 
+ * */

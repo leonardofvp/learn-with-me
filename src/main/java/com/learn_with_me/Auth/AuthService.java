@@ -1,7 +1,6 @@
 package com.learn_with_me.Auth;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +16,6 @@ import com.learn_with_me.models.entity.Alumno;
 import com.learn_with_me.models.entity.Imagen;
 import com.learn_with_me.models.entity.Profesor;
 import com.learn_with_me.repository.AlumnoRepository;
-import com.learn_with_me.repository.ImagenRepository;
-import com.learn_with_me.repository.ProfesorRepository;
 import com.learn_with_me.service.AlumnoService;
 import com.learn_with_me.service.ImagenService;
 import com.learn_with_me.service.ProfesorService;
@@ -33,12 +30,9 @@ public class AuthService {
 	private final AlumnoRepository alumnoRepository;
 	private final AlumnoService alumnoService;
 
-	private final ProfesorRepository profesorRepository;
 	private final ProfesorService profesorService;
 	
 	private final ImagenService imagenService;
-	
-	private final ImagenRepository imagenRepositpry;
 	
 
 	private final JwtService jwtService;
@@ -68,30 +62,17 @@ public class AuthService {
 		Alumno alumno = new Alumno();
 		Profesor profesor = new Profesor();
 		
-		/*
-		int num_matriculaAlumno = alumnoRepository.ultimoId();
+		int num_matriculaAlumno = alumnoService.ultimoIdRegistrado();
+		int num_matriculaProfesor = profesorService.ultimoIdRegistrado();
 		
-		if (num_matriculaAlumno == 0) {
-			num_matriculaAlumno =0;
-		}
-		int num_matriculaProfesor = profesorRepository.ultimoId();
-		
-		if (num_matriculaProfesor == 0) {
-			num_matriculaProfesor =0;
-		}
-		*/
 
 		// para validar el rol que se recibe
 		String tipo1 = Role.PROFESOR.name();
 		String tipo2 = Role.ALUMNO.name();
 		String rolRquest = request.getRol();
 		LocalDate fechaNac;
-		
-		Imagen imagen = imagenService.guardarImagen();	
-		
-		//Imagen imagen = imagenRepositpry.obtenerImagen();	
-		
-		
+		Imagen imagen;
+			
 
 		// validacion de la fecha para este formato xxx/xx/xx
 		fechaNac = request.validarFecha(request.getFechaNacimiento());
@@ -100,12 +81,16 @@ public class AuthService {
 		if (alumnoService.alumnoExiste(request.getUsername()) || (profesorService.profesorExiste(request.getUsername()))) {
 			return new ResponseEntity<String>("usuario ya existe", HttpStatus.BAD_REQUEST);
 		}
+		
+		//este metodo guarla img por defecto y me devuelta la imagen para asignarsela a al alumno
+		imagen = imagenService.crearImagenDefault();	
+					
 
 		// despues de las validaciones, depende del rol se va a regustrar un alumnono o
 		// prefesor en la db
 		if (rolRquest.equalsIgnoreCase(tipo2)) {
 			// se crea el alumno 
-			//num_matriculaAlumno++;
+			num_matriculaAlumno++;
 			alumno.setNombreCompleto(request.getNombreCompleto());
 			alumno.setApellidoCompleto(request.getApellidoCompleto());
 			alumno.setDni(request.getDni());
@@ -116,8 +101,10 @@ public class AuthService {
 			alumno.setFechaNacimiento((fechaNac));
 			alumno.setCertificado(false);
 			alumno.setEstado("registrado");
-			alumno.setMatricula("LWMA-" + String.valueOf(0));
-			alumno.setImagen(imagen);
+			alumno.setMatricula("LWMA-" + String.valueOf(num_matriculaAlumno));
+			alumno.getImagenes().add(imagen);
+			
+			imagen.setAlumno(alumno);
 			
 			// guardar db
 			alumnoService.registrarAlumno(alumno);
@@ -129,8 +116,8 @@ public class AuthService {
 
 		} else if (rolRquest.equalsIgnoreCase(tipo1)) {
 			// se crea el alumno 
-			//num_matriculaProfesor++;
-			profesor.setMatricula("LWMP-" + String.valueOf(0));
+			num_matriculaProfesor++;
+			profesor.setMatricula("LWMP-" + String.valueOf(num_matriculaProfesor));
 			profesor.setRole(Role.PROFESOR);
 			profesor.setNombreCompleto(request.getNombreCompleto());
 			profesor.setApellidoCompleto(request.getApellidoCompleto());
@@ -140,6 +127,9 @@ public class AuthService {
 			profesor.setPais(request.getPais());
 			profesor.setEspecialidad("java");
 			profesor.setFechaNacimiento(fechaNac);
+			profesor.getImagenes().add(imagen);
+			
+			imagen.setProfesor(profesor);
 			
 			//guardar db
 			profesorService.registrarProfesor(profesor);

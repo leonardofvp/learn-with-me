@@ -33,12 +33,16 @@ public class Admincontroller {
     @GetMapping("/listarAlumnos")
     public ResponseEntity<?> listaAlumnos() {
         List<Alumno> ListAlumnos = new ArrayList<>();
-        ListAlumnos = alumnoService.listaAlumnos();
+        ListAlumnos = (List<Alumno>) alumnoService.findAll();
 
         if (ListAlumnos.isEmpty()) {
             return new ResponseEntity<String>("No se ha agregado ningún alumno a la lista", HttpStatus.ACCEPTED);
         }
 
+        for (Alumno alumno : ListAlumnos) {
+            alumno.getImagenes().size(); // Esto cargará las imágenes relacionadas con el alumno
+        }
+        
         return new ResponseEntity<List<Alumno>>(ListAlumnos, HttpStatus.ACCEPTED);
 
     }

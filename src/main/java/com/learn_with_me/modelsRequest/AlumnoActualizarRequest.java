@@ -1,11 +1,8 @@
-package com.learn_with_me.Auth;
+package com.learn_with_me.modelsRequest;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
+import org.springframework.web.multipart.MultipartFile;
 
-import org.springframework.http.HttpStatus;
-
-import com.learn_with_me.execptions.MiException;
+import com.learn_with_me.Auth.RegisterRequest;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -16,9 +13,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterRequest {
+public class AlumnoActualizarRequest {
 
-   
+
     @NotBlank(message = "El nombre completo no debe estar en blanco o nulo")
     @Pattern(regexp = "^[a-zA-ZÀ-ÿ\\s']{1,30}$", message = "El nombre completo debe contener solo letras y tener un máximo de 30 caracteres")
     private String nombreCompleto;
@@ -53,30 +50,6 @@ public class RegisterRequest {
     @NotBlank(message = "El país no debe estar en blanco o nulo")
     @Pattern(regexp = "^[a-zA-ZÀ-ÿ\\s']{1,30}$", message = "El pais debe contener solo letras y tener un máximo de 30 caracteres")
     private String pais;
-
- 
-    @NotBlank(message = "El rol no debe estar en blanco o nulo")
-    private String rol;
     
-
-    //validar la fecha de nacimiento
-    public LocalDate validarFecha(String fechaNacimiento) throws MiException  {
-        try {
-        	//si la fecha que recibe es en formato corrrecto devuelve la fecha como localdate
-            LocalDate fechaNac = LocalDate.parse(fechaNacimiento);
-            
-            // Verifica si la fecha de nacimiento es del pasado
-            LocalDate fechaActual = LocalDate.now();
-            if (fechaNac.isAfter(fechaActual)) {
-                throw new MiException("La fecha de nacimiento debe ser del pasado", HttpStatus.BAD_REQUEST);
-            }
-            return fechaNac; 
-            
-        } catch (DateTimeParseException  e) {
-            throw new MiException("El formato de fecha debe ser yyyy-MM-dd", HttpStatus.BAD_REQUEST);
-        }
-        
-    }
-    
-
+    private MultipartFile file;
 }

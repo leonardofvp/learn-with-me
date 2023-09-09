@@ -18,17 +18,26 @@ public class Test {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_Test;
-    private String pregunta;
-    private String respuesta;
+    private String resultado;
+    
 
     @ManyToOne
-    @JoinColumn(name="id_alum")
-    private Alumno alum;
+    @JoinColumn(name="id_alumno")
+    private Alumno alumno;
 
-    public Test(Integer id_Test, String pregunta, String respuesta, Alumno alum) {
-        this.id_Test = id_Test;
-        this.pregunta = pregunta;
-        this.respuesta = respuesta;
-        this.alum = alum;
-    }
+
+	public Test(Integer id_Test, String resultado, Alumno alumno) {
+		super();
+		this.id_Test = id_Test;
+		this.resultado = resultado;
+		this.alumno = alumno;
+	}
+    
+  
+
+
+
+
+
+  
 }
