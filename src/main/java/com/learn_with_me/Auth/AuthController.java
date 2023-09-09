@@ -19,23 +19,17 @@ public class AuthController {
 	private final AuthService authService;
 
 	@PostMapping("/login")
-	public ResponseEntity<AuthResponse> Login(@RequestBody LoginRequest request) {
+	public ResponseEntity<?> Login(@RequestBody @Valid LoginRequest request) {
 
-		return ResponseEntity.ok(authService.login(request));
-		/*
-		 * String email = alumno.getMail(); String password = alumno.getPassword();
-		 * 
-		 * Alumno alu = alumnoService.buscarPorEmail(email);
-		 * 
-		 * if (alu != null && alu.getPassword().equals(password)) {
-		 * 
-		 * return new ResponseEntity<String>("Bienvenido  usuario: " +
-		 * alu.getNombreCompleto(), HttpStatus.ACCEPTED); } return new
-		 * ResponseEntity<String>("Usuario o clave incorrecta ",
-		 * HttpStatus.BAD_REQUEST);
-		 */
+		try {
+
+			return ResponseEntity.ok(authService.login(request));
+
+		} catch (MiException miExeception) {
+			return new ResponseEntity<String>(miExeception.getMensaje(), miExeception.getStatus());
+		}
+
 	}
-	
 
 	@PostMapping("/registro")
 	public ResponseEntity<?> registrarAlumno(@RequestBody @Valid RegisterRequest request) {

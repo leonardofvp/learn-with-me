@@ -11,8 +11,10 @@ import com.learn_with_me.models.entity.Imagen;
 public interface ImagenRepository extends JpaRepository<Imagen, Integer>{
 	
 	 
-	 @Query(value = "SELECT * FROM imagenes WHERE id_alumno = :idAlumno", nativeQuery = true)
+	 @Query(value = "SELECT i.* FROM imagenes i WHERE id_alumno = :idAlumno", nativeQuery = true)
 	 Imagen obtenerImagenPorIdAlumno(@Param("idAlumno") Integer idAlumno);
 
 	
 }
+
+

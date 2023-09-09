@@ -39,13 +39,15 @@ public class Alumno extends Persona {
 	private Boolean certificado;
 	
 	@OneToMany (mappedBy = "alumno"  , cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnore
 	private List<Inscripcion> inscrip;
 	
 	
 	@OneToMany (mappedBy = "alumno"  ,cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnore
 	private List<Test> Tests;
 	
-	@OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL, orphanRemoval = true )
 	@JsonIgnore
 	private List<Imagen> imagenes = new ArrayList<>();
 

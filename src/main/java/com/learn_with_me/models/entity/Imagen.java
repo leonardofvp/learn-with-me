@@ -1,6 +1,5 @@
 package com.learn_with_me.models.entity;
 
-
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

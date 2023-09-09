@@ -7,11 +7,10 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.learn_with_me.repository.AlumnoRepository;
+import com.learn_with_me.service.PersonaService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,7 +18,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-    private final AlumnoRepository alumnoRepository;
+    
+    private final PersonaService personaService;
+
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception
@@ -41,10 +42,20 @@ public class ApplicationConfig {
         return new BCryptPasswordEncoder();
     }
 
+    
+    //-------------> este metodo se le retiro la exception 
+    @Bean
+    public UserDetailsService userDetailService() {
+        return username ->  personaService.findUserByUsername(username);
+        		
+    }
+
+    /*
     @Bean
     public UserDetailsService userDetailService() {
         return username -> alumnoRepository.findByUsername(username)
         .orElseThrow(()-> new UsernameNotFoundException("User not fournd"));
     }
-
+    
+    */
 }

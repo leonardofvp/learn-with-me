@@ -58,7 +58,9 @@ public class AlumnoService {
 		Optional<Alumno> optionalAlumno = alumnoRepository.findByUsername(username);
 		return optionalAlumno.isPresent();
 	}
-
+	
+	
+	
 	public boolean eliminarPorId(int id) {
 		if (alumnoRepository.existsById(id)) {
 			alumnoRepository.deleteById(id);
@@ -129,7 +131,6 @@ public class AlumnoService {
 			alumno.getImagenes().clear();
 			alumno.getImagenes().add(imagenDefaul);
 			
-			
 			alumno.setNombreCompleto(request.getNombreCompleto());
 			alumno.setApellidoCompleto(request.getApellidoCompleto());
 			alumno.setDni(request.getDni());
@@ -149,7 +150,6 @@ public class AlumnoService {
 		
 	}
 
-	
 	
 	
 }

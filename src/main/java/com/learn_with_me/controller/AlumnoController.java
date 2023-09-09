@@ -24,7 +24,7 @@ public class AlumnoController {
 	
 	private final AlumnoService alumnoService;
 	
-	@PutMapping("/actualizarImagen/{id}")
+	@PutMapping("/actualizarAlumnoPorID/{id}")
 	public ResponseEntity<?> actualizarImg (@ModelAttribute("formData") @Valid  AlumnoActualizarRequest request , @PathVariable("id") Integer id){
 		  
 		  try {
