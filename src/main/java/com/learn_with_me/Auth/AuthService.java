@@ -100,7 +100,7 @@ public class AuthService {
 			alumno.setRole(Role.ALUMNO);
 			alumno.setFechaNacimiento((fechaNac));
 			alumno.setCertificado(false);
-			alumno.setEstado("registrado");
+			alumno.setEstado(true);
 			alumno.setMatricula("LWMA-" + String.valueOf(num_matriculaAlumno));
 			alumno.getImagenes().add(imagen);
 			
@@ -127,6 +127,7 @@ public class AuthService {
 			profesor.setPais(request.getPais());
 			profesor.setEspecialidad("java");
 			profesor.setFechaNacimiento(fechaNac);
+			profesor.setEstado(true);
 			profesor.getImagenes().add(imagen);
 			
 			imagen.setProfesor(profesor);

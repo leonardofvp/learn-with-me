@@ -2,7 +2,6 @@ package com.learn_with_me.modelsRequest;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.learn_with_me.Auth.RegisterRequest;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

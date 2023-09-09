@@ -23,7 +23,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Persona implements UserDetails {
   
-    private String nombreCompleto;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String nombreCompleto;
     private String apellidoCompleto;
     private String dni;
     private String username;
@@ -31,6 +35,7 @@ public class Persona implements UserDetails {
     private LocalDate fechaNacimiento;
     private String pais;
     private String matricula;
+    private boolean estado;
     
     @Enumerated(EnumType.STRING)
     private Role role;
