@@ -3,7 +3,6 @@ package com.learn_with_me.service;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.learn_with_me.execptions.MiException;

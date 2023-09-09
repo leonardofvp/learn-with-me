@@ -7,12 +7,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name="tests")
 public class Test {
     @Id
@@ -24,19 +26,6 @@ public class Test {
     @ManyToOne
     @JoinColumn(name="id_alumno")
     private Alumno alumno;
-
-
-	public Test(Integer id_Test, String resultado, Alumno alumno) {
-		super();
-		this.id_Test = id_Test;
-		this.resultado = resultado;
-		this.alumno = alumno;
-	}
-    
-  
-
-
-
 
 
   

@@ -6,6 +6,4 @@ public enum Role {
     PROFESOR, 
     ALUMNO;
 
-   
-    
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,15 +19,17 @@ import com.learn_with_me.models.entity.Alumno;
 import com.learn_with_me.repository.AlumnoRepository;
 import com.learn_with_me.service.AlumnoService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping("/admin")
+@RequiredArgsConstructor
 public class Admincontroller {
 
-    @Autowired
-    private AlumnoService alumnoService;
+  
+    private final  AlumnoService alumnoService;
 
-    @Autowired
-    private AlumnoRepository alumnoRepository;
+    private final AlumnoRepository alumnoRepository;
 
 
     @GetMapping("/listarAlumnos")

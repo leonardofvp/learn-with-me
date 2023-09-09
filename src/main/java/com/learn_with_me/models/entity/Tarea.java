@@ -4,34 +4,31 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "tareas")
+@AllArgsConstructor
+@Table(name="tareas")
 public class Tarea {
-	
-    
-    @Id
+
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_tarea;
-    
-    private Integer tareasTotales;
-    private Integer tareasCumplidas;
-    private Integer tareasRestantes;
-    
-    
-	public Tarea(Integer id_tarea, Integer tareasTotales, Integer tareasCumplidas, Integer tareasRestantes) {
-		super();
-		this.id_tarea = id_tarea;
-		this.tareasTotales = tareasTotales;
-		this.tareasCumplidas = tareasCumplidas;
-		this.tareasRestantes = tareasRestantes;
-	}
 
-    
+	private String tareasTotales;
+	private String tareasCumplidas;
+	private String tareasRestantes;
+	
+	@ManyToOne 
+    @JoinColumn(name="id_curso")
+	private Curso curso;
 
+	
 }

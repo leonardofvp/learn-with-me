@@ -1,7 +1,6 @@
 package com.learn_with_me.service;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
