@@ -121,7 +121,6 @@ public class AlumnoService {
 
 		}
 		
-		System.err.println(imagenDefaul.getMime());
 		
 
 		Optional<Alumno> alumnoOptional = this.buscarAlumnoPorId(id);
