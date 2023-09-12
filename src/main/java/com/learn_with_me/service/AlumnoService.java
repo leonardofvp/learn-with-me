@@ -127,13 +127,14 @@ public class AlumnoService {
 		//verificamos si la imagen esta presente le seteamos la imagen al alumno sino
 		// guardamos la image y le seteamos al alumno
 		if (!imagenOptional.isPresent()) {
-			
 			imagenRepository.save(imagenNueva);
+			imagenRepository.deleteById(imagenOptional.get().getId_Imagen());;
 			alumno.setImagen(imagenNueva);
 		}
 		
+		//---------<sadadadf
 		//caragamos los nuevos datos del alumno
-		imagenRepository.delete(imagenOptional.get());
+	
 		if (alumnoOptional.isPresent()) {
 			
 			alumno.setNombreCompleto(request.getNombreCompleto());
