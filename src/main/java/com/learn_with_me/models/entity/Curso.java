@@ -43,8 +43,8 @@ public class Curso {
 	@OneToMany (mappedBy = "curso")
 	private List<Inscripcion> inscrip;	
 	
-	@OneToMany (mappedBy = "curso")
-	private List<Imagen> imagenes;
+	//@OneToMany (mappedBy = "curso")
+	//private List<Imagen> imagenes;
 	
 	@OneToMany (mappedBy = "curso")
     private List<Tarea> tareas;

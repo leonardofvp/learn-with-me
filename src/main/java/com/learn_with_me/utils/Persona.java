@@ -64,7 +64,7 @@ public class Persona implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
+		
 		return username;
 	}
 

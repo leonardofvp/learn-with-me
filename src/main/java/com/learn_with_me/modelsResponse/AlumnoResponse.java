@@ -1,6 +1,7 @@
 package com.learn_with_me.modelsResponse;
 
 import java.time.LocalDate;
+
 import lombok.Data;
 
 
@@ -18,6 +19,8 @@ public class AlumnoResponse {
     private LocalDate fechaNacimiento;
 
     private String pais;
+
+    private ImagenResponse imagen;
     
  
 }

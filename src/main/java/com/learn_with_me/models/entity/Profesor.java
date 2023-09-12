@@ -1,6 +1,6 @@
 package com.learn_with_me.models.entity;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 
@@ -38,8 +38,8 @@ public class Profesor extends Persona {
 	@OneToMany (mappedBy = "profesor",  cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Curso> cursos;
 	
-	@OneToMany(mappedBy = "profesor", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Imagen> imagenes = new ArrayList<>();
+	//@OneToMany(mappedBy = "profesor", cascade = CascadeType.ALL, orphanRemoval = true)
+	//private List<Imagen> imagenes = new ArrayList<>();
 
 	
 	

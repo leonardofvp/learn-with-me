@@ -27,23 +27,25 @@ public class ImagenService {
 		String imagePath = "img/default.png";
 		// Cargar el archivo de imagen como recurso desde el classpath
 		Resource resource = new ClassPathResource(imagePath);
-
+		
 		Imagen imagen = new Imagen();
 		imagen.setMime("image/jpeg");
 		imagen.setNombre(resource.getFilename());
 		
 		
 		try {
+			System.out.println("-----------------------" + imagen.getNombre());
 			//imagen.setContenido(Files.readAllBytes(resource.getFile().toPath()));
 			imagen.setContenido(resource.getContentAsByteArray());
+			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
 		
 
-		//imagenRepository.save(imagen);
+		imagenRepository.save(imagen);
 
 		return imagen;
 

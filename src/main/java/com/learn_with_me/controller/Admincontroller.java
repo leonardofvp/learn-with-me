@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.learn_with_me.models.entity.Alumno;
-import com.learn_with_me.modelsResponse.AlumnoResponse;
 
+import com.learn_with_me.modelsResponse.AlumnoResponse;
+import com.learn_with_me.modelsResponse.ImagenResponse;
 import com.learn_with_me.service.AlumnoService;
 
 import lombok.RequiredArgsConstructor;
@@ -58,10 +59,10 @@ public class Admincontroller {
         	alumnoResponse.setId(alumno.getId_alumno());
         	alumnoResponse.setNombreCompleto(alumno.getNombreCompleto());
         	alumnoResponse.setPais(alumno.getPais());
+            
         	listAlumno.add(alumnoResponse);
             
         }
-    
         
         return new ResponseEntity<List<AlumnoResponse>>(listAlumno, HttpStatus.ACCEPTED);
 
@@ -88,20 +89,6 @@ public class Admincontroller {
 
     }
 
-    /*
-    @PutMapping("/actualizarPorId/{id}")
-    public ResponseEntity<String> actualizarAlumno(@PathVariable int id, @RequestBody RegisterRequest request) {
-
-        if (alumnoRepository.existsById(id)) {
-            alum.setId_alumno(id);
-            alumnoService.actualizarAlumno(alum);
-            return new ResponseEntity<String>("usuario modificado con exito", HttpStatus.ACCEPTED);
-        }
-        return new ResponseEntity<String>("id de usuario no existe", HttpStatus.BAD_REQUEST);
-    }
-    
-    */
-
     @DeleteMapping("/eliminarPorId/{id}")
     public ResponseEntity<String> eliminarPorId(@PathVariable int id) {
         boolean eliminado = alumnoService.eliminarPorId(id);
@@ -109,6 +96,34 @@ public class Admincontroller {
             return new ResponseEntity<String>("Usuario eliminado con exito", HttpStatus.ACCEPTED);
         }
 
+        return new ResponseEntity<String>("Usuario no existe", HttpStatus.BAD_REQUEST);
+
+    }
+
+    @GetMapping("/buscarAlumnoImgPorId/{id}")
+    public ResponseEntity<?> buscarAlumnoImgPorID(@PathVariable int id) { // La anotación @PathVariable en el parámetro int id
+                                                                 // capturará el valor de id de la URL y lo pasará
+   
+    	 Optional<Alumno> alumno = alumnoService.buscarAlumnoPorId(id);
+        if (alumno.isPresent()) {
+            ImagenResponse imagen = new ImagenResponse(alumno.get());
+
+
+
+        	AlumnoResponse alumnoResponse = new AlumnoResponse();
+        	alumnoResponse.setApellidoCompleto(alumno.get().getApellidoCompleto());
+        	alumnoResponse.setDni(alumno.get().getDni());
+        	alumnoResponse.setFechaNacimiento(alumno.get().getFechaNacimiento());
+        	alumnoResponse.setId(alumno.get().getId_alumno());
+        	alumnoResponse.setNombreCompleto(alumno.get().getNombreCompleto());
+        	alumnoResponse.setPais(alumno.get().getPais());
+
+            
+
+            alumnoResponse.setImagen(imagen);
+        	
+            return new ResponseEntity<AlumnoResponse>(alumnoResponse, HttpStatus.ACCEPTED);
+        }
         return new ResponseEntity<String>("Usuario no existe", HttpStatus.BAD_REQUEST);
 
     }

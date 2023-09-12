@@ -102,6 +102,7 @@ public class AuthService {
 		// instancias necesarias
 		AuthResponse authResponse = new AuthResponse();
 		Alumno alumno = new Alumno();
+		
 		Profesor profesor = new Profesor();
 
 		int num_matriculaAlumno = alumnoService.ultimoIdRegistrado();
@@ -125,8 +126,15 @@ public class AuthService {
 
 		// este metodo guarla img por defecto y me devuelta la imagen para asignarsela a
 		// al alumno
-		imagen = imagenService.crearImagenDefault();
-
+		if (num_matriculaAlumno == 0) {
+			imagen = imagenService.crearImagenDefault();
+		} else {
+			imagen = imagenService.obtenerImagenPorId(1);
+		}
+		
+		
+		
+		
 		// despues de las validaciones, depende del rol se va a regustrar un alumnono o
 		// prefesor en la db
 		if (rolRquest.equalsIgnoreCase(tipo2)) {
@@ -143,10 +151,11 @@ public class AuthService {
 			alumno.setCertificado(false);
 			alumno.setEstado(true);
 			alumno.setMatricula("LWMA-" + String.valueOf(num_matriculaAlumno));
-			alumno.getImagenes().add(imagen);
-
-			imagen.setAlumno(alumno);
-
+			//alumno.getImagenes().add(imagen);
+			alumno.setImagen(imagen);
+			//imagen.getAlumnos().add(alumno);
+			
+			
 			// guardar db
 			alumnoService.registrarAlumno(alumno);
 
@@ -169,9 +178,9 @@ public class AuthService {
 			profesor.setEspecialidad("java");
 			profesor.setFechaNacimiento(fechaNac);
 			profesor.setEstado(true);
-			profesor.getImagenes().add(imagen);
+			//profesor.getImagenes().add(imagen);
 
-			imagen.setProfesor(profesor);
+			//imagen.setProfesor(profesor);
 
 			// guardar db
 			profesorService.registrarProfesor(profesor);

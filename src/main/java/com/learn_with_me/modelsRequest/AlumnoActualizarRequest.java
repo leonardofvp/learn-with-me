@@ -29,14 +29,6 @@ public class AlumnoActualizarRequest {
     @Pattern(regexp = "^[0-9]{8}$", message = "El DNI debe ser una cadena de 8 dígitos numéricos")
     private String dni;
 
-  
-    @NotBlank(message = "El correo electrónico no debe estar en blanco o nulo")
-    // @Email(message = "El formato de la dirección de correo electrónico no es
-    // válido")
-    @Pattern(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$", message = "La dirección de correo electrónico no es válida")
-    private String username;
-
- 
     @NotBlank(message = "El correo electrónico no debe estar en blanco o nulo")
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!]).{8,15}$", message = "La contrase\u00F1a no cumple con los requisitos, ingrese letras mayusculas y minusculas, numeros, un caracter especial y maximo 15")
     private String password;

@@ -26,12 +26,11 @@ import lombok.RequiredArgsConstructor;
 public class AlumnoService {
 
 	private final AlumnoRepository alumnoRepository;
-	
-	private final PasswordEncoder passwordEncoder;
-	
-	private final ImagenRepository imagenrepository;
 
-	
+	private final PasswordEncoder passwordEncoder;
+
+	private final ImagenRepository imagenRepository;
+
 	public Alumno registrarAlumno(Alumno alumno) {
 
 		return this.alumnoRepository.save(alumno);
@@ -41,14 +40,10 @@ public class AlumnoService {
 
 		return this.alumnoRepository.findAll();
 	}
-	
-	
 
-    public Iterable<Alumno> findAll(){
-    	return alumnoRepository.findAll();
-    }
-	
-	
+	public Iterable<Alumno> findAll() {
+		return alumnoRepository.findAll();
+	}
 
 	public Optional<Alumno> buscarAlumnoPorId(Integer id) {
 		return alumnoRepository.findById(id);
@@ -58,9 +53,7 @@ public class AlumnoService {
 		Optional<Alumno> optionalAlumno = alumnoRepository.findByUsername(username);
 		return optionalAlumno.isPresent();
 	}
-	
-	
-	
+
 	public boolean eliminarPorId(int id) {
 		if (alumnoRepository.existsById(id)) {
 			alumnoRepository.deleteById(id);
@@ -97,9 +90,10 @@ public class AlumnoService {
 		// construimos la imagen con los datos del multipar
 		MultipartFile archivo = request.getFile();
 		
-		//esta es la img de bd
-		Imagen imagenDefaul = imagenrepository.obtenerImagenPorIdAlumno(id);
-
+		Optional<Alumno> alumnoOptional;
+		Optional<Imagen> imagenOptional; 
+		Imagen imagenNueva = new Imagen();
+		Alumno alumno;
 		
 		//validamops la fecha
 		fechaNac =  validarFecha.validarFecha(request.getFechaNacimiento());
@@ -108,38 +102,47 @@ public class AlumnoService {
 		//validamos que el archivo no venga nulo
 		if (archivo != null) {
 			
-			imagenDefaul.setMime(archivo.getContentType());
-			imagenDefaul.setNombre(archivo.getOriginalFilename());
+			imagenNueva.setMime(archivo.getContentType());
+			imagenNueva.setNombre(archivo.getOriginalFilename());
 			
 
 			try {
-				imagenDefaul.setContenido(archivo.getBytes());
+				imagenNueva.setContenido(archivo.getBytes());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 
 		}
-		
-		System.err.println(imagenDefaul.getMime());
-		
 
-		Optional<Alumno> alumnoOptional = this.buscarAlumnoPorId(id);
+		//buscamos el alumno por el id
+		alumnoOptional = this.buscarAlumnoPorId(id);
+		//verificamos si laimagen esta en la base de datos
+		imagenOptional = imagenRepository.findByNombre(imagenNueva.getNombre());
+		//creamos un objeto alumno
+		alumno = alumnoOptional.get();
 
+		//verificamos si la imagen esta presente le seteamos la imagen al alumno sino
+		// guardamos la image y le seteamos al alumno
+		if (!imagenOptional.isPresent()) {
+			
+			imagenRepository.save(imagenNueva);
+			alumno.setImagen(imagenNueva);
+		}
+		
+		//caragamos los nuevos datos del alumno
+		imagenRepository.delete(imagenOptional.get());
 		if (alumnoOptional.isPresent()) {
-			Alumno alumno = alumnoOptional.get();
-			alumno.getImagenes().clear();
-			alumno.getImagenes().add(imagenDefaul);
 			
 			alumno.setNombreCompleto(request.getNombreCompleto());
 			alumno.setApellidoCompleto(request.getApellidoCompleto());
 			alumno.setDni(request.getDni());
-			alumno.setUsername(request.getUsername());
+			alumno.setUsername(alumnoOptional.get().getUsername());
 			alumno.setPassword(passwordEncoder.encode(request.getPassword()));
 			alumno.setPais(request.getPais());
 			alumno.setFechaNacimiento((fechaNac));
 			
-			imagenDefaul.setAlumno(alumno);
+			//imagenDefaul.setAlumno(alumno);
 
 			// actualizamos el alumno
 			this.actualizarAlumno(alumno);
@@ -150,6 +153,5 @@ public class AlumnoService {
 		
 	}
 
-	
-	
+
 }

@@ -18,8 +18,8 @@ import lombok.RequiredArgsConstructor;
 public class TestService {
 	
 	private final TestRepository testRepository;
-	private final AlumnoService alumnoService;
 	
+	private final AlumnoService alumnoService;
 	
 	public void guardarTest( TestRequest request , Integer id) throws MiException {
 		
@@ -27,23 +27,14 @@ public class TestService {
 		test.setResultado(request.getResultado());
 	
 		try {
-			System.out.println("entro en el try");
 			Optional<Alumno> alumno = alumnoService.buscarAlumnoPorId(id);
 			test.setAlumno(alumno.get());
-			System.out.println(alumno.get().getId_alumno());
 			testRepository.save(test);
 			
 		} catch (Exception e) {
-			
-			System.out.println("lanzo una excepcion");
-
 			throw new MiException("id alumno invalido", HttpStatus.BAD_REQUEST);
 		}
-		
 				
 	}
 			
-	
-	
-
 }

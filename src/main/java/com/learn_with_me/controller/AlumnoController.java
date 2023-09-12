@@ -28,30 +28,17 @@ public class AlumnoController {
 	public ResponseEntity<?> actualizarImg (@ModelAttribute("formData") @Valid  AlumnoActualizarRequest request , @PathVariable("id") Integer id){
 		  
 		  try {
+			
 			alumnoService.actualizarRegistro(request , id);
-
 			return new ResponseEntity<String>("datos actualizados" , HttpStatus.OK);
 			
 		} catch (MiException e) {
 
 			return new ResponseEntity<String>( e.getMensaje(), e.getStatus() );
+
 		}
 
 	}
-	
-	
-	
-	
-	
-	
-	@PutMapping("/actualizarDatos")
-	public ResponseEntity<?> actualizarDatos (){
-		
-		
-		return new ResponseEntity<String>("img actualizada" , HttpStatus.OK);
-	}
-
-	
 	
 }
 	
