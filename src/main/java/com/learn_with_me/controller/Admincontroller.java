@@ -100,7 +100,7 @@ public class Admincontroller {
 
     }
 
-    @GetMapping("/buscarAlumnoImgPorId/{id}")
+    @GetMapping("/git stst/{id}")
     public ResponseEntity<?> buscarAlumnoImgPorID(@PathVariable int id) { // La anotación @PathVariable en el parámetro int id
                                                                  // capturará el valor de id de la URL y lo pasará
    
