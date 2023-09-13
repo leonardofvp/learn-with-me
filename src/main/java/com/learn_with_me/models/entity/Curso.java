@@ -46,4 +46,6 @@ public class Curso {
    @ManyToOne 
    @JoinColumn(name="Id_ruta")
    private Ruta ruta;
+
+   
 }

@@ -10,13 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
 import com.learn_with_me.models.entity.Alumno;
-
+import com.learn_with_me.models.entity.Curso;
 import com.learn_with_me.modelsResponse.AlumnoResponse;
 import com.learn_with_me.modelsResponse.ImagenResponse;
 import com.learn_with_me.service.AlumnoService;
@@ -125,6 +125,13 @@ public class Admincontroller {
             return new ResponseEntity<AlumnoResponse>(alumnoResponse, HttpStatus.ACCEPTED);
         }
         return new ResponseEntity<String>("Usuario no existe", HttpStatus.BAD_REQUEST);
+
+    }
+    
+    @PostMapping
+    @RequestMapping("/crearCursos")
+    public void crearCursos(){
+        Curso html = new Curso();
 
     }
 }
