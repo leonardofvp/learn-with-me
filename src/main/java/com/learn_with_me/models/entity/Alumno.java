@@ -3,7 +3,6 @@ package com.learn_with_me.models.entity;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.learn_with_me.utils.Persona;
 
 import jakarta.persistence.CascadeType;
@@ -43,6 +42,9 @@ public class Alumno extends Persona {
 	private Boolean certificado;
 	
 
+	@OneToMany (mappedBy = "alumno"  , cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Inscripcion> inscrip;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="id_imagen")
 	private Imagen imagen;

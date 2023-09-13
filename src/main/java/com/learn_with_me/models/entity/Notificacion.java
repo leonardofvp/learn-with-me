@@ -28,8 +28,7 @@ public class Notificacion {
     
    */
     
-    @OneToMany ( cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name="id_profesor")
+    @OneToMany ( mappedBy = "notificacion" , cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Profesor> profesores;
     
 }

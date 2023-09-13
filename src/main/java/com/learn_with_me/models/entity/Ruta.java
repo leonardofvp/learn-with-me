@@ -30,8 +30,7 @@ public class Ruta {
     private String tipoAprendizaje;
     private Integer cantidadCursos;
 
-    @OneToMany ( cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name="id_curso")
+    @OneToMany (mappedBy = "ruta", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Curso> cursos;
     
  
@@ -40,7 +39,6 @@ public class Ruta {
     private List<Inscripcion> inscrip;
 
     @ManyToOne
-    @JoinColumn(name="id_profesor")
     private Profesor profesor;
 
     

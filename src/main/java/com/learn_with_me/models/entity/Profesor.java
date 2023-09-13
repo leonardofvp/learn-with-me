@@ -30,12 +30,9 @@ public class Profesor extends Persona {
 	private Integer id_profesor;
 	private String especialidad;
 	
-	/*
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="id_notificacion")
-	private Notificacion notificacion;
-
-*/
+	@OneToMany (mappedBy = "profesor",  cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Ruta> rutas;
 	
-    
+    @ManyToOne
+    private Notificacion notificacion;
 }

@@ -17,9 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.learn_with_me.models.entity.Alumno;
 import com.learn_with_me.models.entity.Curso;
+import com.learn_with_me.models.entity.Tarea;
 import com.learn_with_me.modelsResponse.AlumnoResponse;
+import com.learn_with_me.modelsResponse.CursoResponse;
 import com.learn_with_me.modelsResponse.ImagenResponse;
+import com.learn_with_me.repository.CursoRepository;
+import com.learn_with_me.repository.TareasRepository;
 import com.learn_with_me.service.AlumnoService;
+import com.learn_with_me.service.CursoService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -31,6 +36,9 @@ public class Admincontroller {
   
     private final  AlumnoService alumnoService;
 
+    private final TareasRepository tareasRepository;
+    private final CursoRepository cursoRepository;
+    private final CursoService cursoService;
 
     @GetMapping("/listarAlumnos")
     public ResponseEntity<?> listaAlumnos() {
@@ -132,6 +140,64 @@ public class Admincontroller {
     @RequestMapping("/crearCursos")
     public void crearCursos(){
         Curso html = new Curso();
+        html.setNombreCurso("html");
+        html.setCantidadVideos(5);
+        html.setTipoDeAprendizaje("audiovisual");
+        
+        Curso css = new Curso();
+        css.setNombreCurso("css");
+        css.setCantidadVideos(10);
+        css.setTipoDeAprendizaje("audiovisual");
+        
+        Curso js = new Curso();
+        js.setNombreCurso("js");
+        js.setCantidadVideos(10);
+        js.setTipoDeAprendizaje("audiovisual");
+        
+        Curso react = new Curso();
+        react.setNombreCurso("react");
+        react.setCantidadVideos(20);
+        react.setTipoDeAprendizaje("audiovisual");
+        
+        List<Tarea> listaTareas = tareasRepository.findAll();
+        
+        html.setTareas(listaTareas);
+        
+        cursoRepository.save(html); 
 
     }
+    
+    
+    @GetMapping("/listarCursos")
+    public ResponseEntity<?> listarCursos(){
+        List<CursoResponse> listCurso = new ArrayList<>();
+
+        List<Curso> listaCursoTodosLosDatos = new ArrayList<>();
+        listaCursoTodosLosDatos = (List<Curso>) cursoService.findAll();
+
+        if (listaCursoTodosLosDatos.isEmpty()) {
+            return new ResponseEntity<String>("No se ha agregado ningún curso a la lista", HttpStatus.ACCEPTED);
+        }
+
+        for (Curso curso : listaCursoTodosLosDatos) {
+            CursoResponse cursoResponse = new CursoResponse();
+
+            cursoResponse.setId(curso.getId_Curso());
+            cursoResponse.setNombreCurso(curso.getNombreCurso());
+            cursoResponse.setTipoAprendizaje(curso.getTipoDeAprendizaje());
+            cursoResponse.setCantidadVideos(curso.getCantidadVideos());
+            cursoResponse.setTareas(curso.getTareas());
+            listCurso.add(cursoResponse);
+        }
+        
+        
+
+        
+
+        return new ResponseEntity<List<CursoResponse>>(listCurso, HttpStatus.ACCEPTED);
+    }
+
+    
+    
+  
 }

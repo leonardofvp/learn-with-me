@@ -33,9 +33,9 @@ public class Inscripcion {
 	@JoinColumn(name="id_ruta")
 	private Ruta ruta;
 	
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name="id_alumno")
-	private List<Alumno> alumnos;
+	private Alumno alumno;
 
 	
 

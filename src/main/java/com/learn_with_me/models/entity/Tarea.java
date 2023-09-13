@@ -1,5 +1,7 @@
 package com.learn_with_me.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +26,11 @@ public class Tarea {
 	private String nombre;
 	private String descripcion;
 	
+	
+	@ManyToOne 
+    @JoinColumn(name="id_curso")
+	@JsonIgnore
+    private Curso curso;
 	
 	
 }
