@@ -25,9 +25,5 @@ public class Tarea {
 	private String descripcion;
 	
 	
-	@ManyToOne 
-    @JoinColumn(name="id_curso")
-	private Curso curso;
-
 	
 }

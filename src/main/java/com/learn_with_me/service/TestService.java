@@ -28,7 +28,7 @@ public class TestService {
 	
 		try {
 			Optional<Alumno> alumno = alumnoService.buscarAlumnoPorId(id);
-			test.setAlumno(alumno.get());
+			//test.setAlumno(alumno.get());
 			testRepository.save(test);
 			
 		} catch (Exception e) {
