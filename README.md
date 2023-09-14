@@ -6,31 +6,166 @@
 "Learn-With-Me" es una potente API diseñada para brindar una experiencia de aprendizaje en línea segura y eficiente. Esta API ofrece una amplia gama de funcionalidades que permiten a los usuarios registrarse, iniciar sesión y gestionar contenido educativo de manera fácil y segura. Con un enfoque en la seguridad, "Learn-With-Me" utiliza la tecnología de Spring Framework y JWT (JSON Web Tokens) para garantizar la protección de los datos y la autenticación de los usuarios.
 
 # Detalles
-Características clave:
 
-Registro de Usuarios: "Learn-With-Me" facilita el proceso de registro de usuarios, permitiendo que nuevos estudiantes y profesores se unan a la plataforma de manera sencilla y rápida.
+endpoint: registro
 
-Inicio de Sesión Seguro: La API proporciona un sistema de inicio de sesión seguro, donde los usuarios pueden autenticarse de manera confiable antes de acceder a sus cuentas y recursos.
+solicitud: post
 
-Operaciones CRUD: "Learn-With-Me" ofrece un conjunto completo de operaciones CRUD (Crear, Leer, Actualizar y Eliminar) que permiten a los usuarios gestionar fácilmente sus perfiles, cursos, lecciones y otros recursos educativos.
+descripción:se enviaran los datos para el registro tomando en cuenta estas validaciones
+consideraciones:ningún carácter debe estar en blanco o vacío , todos son string.
 
-Seguridad con Spring: La API utiliza el framework Spring para garantizar la seguridad de los datos y la robustez de la aplicación, implementando prácticas recomendadas de seguridad de software.
+nombreCompleto , apellidoCompleto = recibe solo letras mayúsculas, minúsculas, máx 30 caracteres,
+dni = recibe solo número máximo 8 caracteres,
+username = corresponde al campo de email, caracteres alfanumérico debe tener @ y y un punto (.),
+password = recibe caracteres alfanumérico, un carácter especial, mínimo 8 y max 15 caracteres,
+rol= solo letras,
+fechaNacimiento= debe ser del pasado, solo números, formato yyyy-mm-dd,
+pais= solo letras 
 
-JWT para Autenticación: "Learn-With-Me" utiliza JSON Web Tokens (JWT) para la autenticación de usuarios, lo que garantiza la confidencialidad e integridad de la información de inicio de sesión y permite a los usuarios acceder a sus recursos de manera segura.
+Una vez registrados devuelve el token.
 
-Gestión de Perfiles: Los usuarios pueden crear y gestionar sus perfiles personales, incluyendo información biográfica, foto de perfil y preferencias de aprendizaje.
+url: https://learn-with-me-production.up.railway.app/Api/v1/auth/registro
 
-Creación de Cursos: Los profesores tienen la capacidad de crear y administrar cursos, agregar contenido educativo, asignar tareas y realizar un seguimiento del progreso de los estudiantes.
+ejemplo:
+{
+    "nombreCompleto": "lean",
+    "apellidoCompleto": "withme",
+    "dni": "12548484",
+    "username": "learnwithmee@gmail.com",
+    "password": "prba123#A",
+    "rol" :"alumno",
+    "fechaNacimiento": "1999-06-05",
+    "pais": "argentina"
+}
 
-Interacción Social: "Learn-With-Me" fomenta la interacción social entre usuarios, lo que permite la colaboración y el aprendizaje conjunto a través de foros, grupos de estudio y chat en línea.
+endpoint: login
 
-Notificaciones y Alertas: Los usuarios reciben notificaciones y alertas personalizadas para mantenerse informados sobre actualizaciones importantes y actividades en la plataforma.
+solicitud: post
+url: https://learn-with-me-production.up.railway.app/Api/v1/auth/login
 
-Seguimiento del Progreso: Los usuarios pueden realizar un seguimiento de su progreso en cursos y lecciones, lo que les permite evaluar su rendimiento y mejorar su aprendizaje.
+descripción: se envia usuario y contraseña,aplican las mismas validaciones del registro para username y password
+una vez logueado devuelve el token.
 
-"Learn-With-Me" es la solución ideal para instituciones educativas, profesores independientes y estudiantes que buscan una plataforma de aprendizaje en línea versátil y segura. Con su robusta infraestructura de seguridad y sus funciones completas, esta API se esfuerza por crear un entorno de aprendizaje en línea efectivo y protegido para todos sus usuarios.
+ejemplo:
+
+{
+    "username": "profesor@gmail.com",
+    "password": "prba123#A"
+}
 
 
+
+endpoint: notificación
+
+descripción: una vez el usuario está en la pagina en construccion dejará su email para
+ser notificado cuando este disponible una sección , aplican las mismas validaciones del registro para email.
+
+solicitud: post
+
+url: https://learn-with-me-production.up.railway.app/Api/v1/notificacion/recibirEmail
+
+ejemplo:
+{
+    "username": "pruebates1@gmail.com"
+}
+
+
+
+endpoint: guardar test
+
+descripción: una vez el alumno realiza el test se guarda en l bd se debe enviar el resultado del test más el id del alumno por path variable
+
+solicitud: post
+
+url:https://learn-with-me-production.up.railway.app/Api/v1/test/guardarTest/1
+
+ejemplo:
+
+{
+    "resultado": "audiovisual"
+}
+
+endpoint: lista de alumnos
+
+descripción: recibe una lista de alumnos
+
+solicitud: get
+
+url: https://learn-with-me-production.up.railway.app/Api/v1/admin/listarAlumnos
+
+ejemplo:
+
+[
+    {
+        "id": 1,
+        "nombreCompleto": "cambiodato",
+        "apellidoCompleto": "vargaas",
+        "dni": "12345678",
+        "fechaNacimiento": "2022-04-01",
+        "pais": "argentian"
+    },
+    {
+        "id": 3,
+        "nombreCompleto": "pruebaprofe",
+        "apellidoCompleto": "pruebaprof",
+        "dni": "12548484",
+        "fechaNacimiento": "2023-06-05",
+        "pais": "argentina"
+    },
+    {
+        "id": 4,
+        "nombreCompleto": "lean",
+        "apellidoCompleto": "withme",
+        "dni": "12548484",
+        "fechaNacimiento": "1999-06-05",
+        "pais": "argentina"
+    }
+]
+
+
+
+endpoint: buscar alumno por id
+
+descripción: devuelve un alumno según el id que se le envía por la path variable
+
+solicitud: get
+
+url:https://learn-with-me-production.up.railway.app/Api/v1/admin/buscarPorId/1
+
+ejemplo:
+
+{
+    "id": 1,
+    "nombreCompleto": "cambiodato",
+    "apellidoCompleto": "vargaas",
+    "dni": "12345678",
+    "fechaNacimiento": "2022-04-01",
+    "pais": "argentian"
+}
+
+
+endpoint: eliminar por id
+
+descripción: elimina un alumno con el id recibido por la path variable de la bd
+
+solicitud: delete
+
+url: https://learn-with-me-production.up.railway.app/Api/v1/admin/eliminarPorId/4
+
+ejemplo:
+
+Usuario eliminado con éxito
+
+
+
+
+endpoint: actualizar los datos del alumno por id 
+
+descripción: se actualiza los datos del usuario por el id recibido en la path variable , más la posibilidad de cambiar la foto que se le asignó por defecto al registrarse, se debe enviar un multipart/form-data
+
+solicitud: put
+
+url:https://learn-with-me-production.up.railway.app/Api/v1/alumno/actualizarAlumnoPorID/1
 
 
 
@@ -38,15 +173,23 @@ Seguimiento del Progreso: Los usuarios pueden realizar un seguimiento de su prog
 # Tecnologia empleada
 
 Java 
+
 Jpa
+
 Spring Boot
+
 Spring Framework
+
 Spring Security
+
 Jwt
+
 Hibernet
 
 Spring Tool Suit
+
 Visual Studio Code
+
 Postman
 
 Se utilizó la plataforma Railway para el deploy
@@ -54,11 +197,13 @@ Se utilizó la plataforma Railway para el deploy
 # Contacto
 
 email:
+
 leonardovargasfp@gmail.com
 
 varela.ig98@gmail.com
 
 linkedin:
+
 https://www.linkedin.com/in/leonardo-vargas1/
 
 https://www.linkedin.com/in/ignaciovarela98/
