@@ -7,7 +7,7 @@
 
 # Detalles
 
-endpoint: registro
+**endpoint: registro**
 
 solicitud: post
 
@@ -38,7 +38,7 @@ ejemplo:
     "pais": "argentina"
 }
 
-endpoint: login
+**endpoint: login**
 
 solicitud: post
 url: https://learn-with-me-production.up.railway.app/Api/v1/auth/login
@@ -55,7 +55,7 @@ ejemplo:
 
 
 
-endpoint: notificación
+**endpoint: notificación**
 
 descripción: una vez el usuario está en la pagina en construccion dejará su email para
 ser notificado cuando este disponible una sección , aplican las mismas validaciones del registro para email.
@@ -71,7 +71,7 @@ ejemplo:
 
 
 
-endpoint: guardar test
+**endpoint: guardar test**
 
 descripción: una vez el alumno realiza el test se guarda en l bd se debe enviar el resultado del test más el id del alumno por path variable
 
@@ -85,7 +85,7 @@ ejemplo:
     "resultado": "audiovisual"
 }
 
-endpoint: lista de alumnos
+**endpoint: lista de alumnos**
 
 descripción: recibe una lista de alumnos
 
@@ -124,7 +124,7 @@ ejemplo:
 
 
 
-endpoint: buscar alumno por id
+**endpoint: buscar alumno por id**
 
 descripción: devuelve un alumno según el id que se le envía por la path variable
 
@@ -144,7 +144,7 @@ ejemplo:
 }
 
 
-endpoint: eliminar por id
+**endpoint: eliminar por id**
 
 descripción: elimina un alumno con el id recibido por la path variable de la bd
 
