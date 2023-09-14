@@ -5,6 +5,7 @@
 
 "Learn-With-Me" es una potente API diseñada para brindar una experiencia de aprendizaje en línea segura y eficiente. Esta API ofrece una amplia gama de funcionalidades que permiten a los usuarios registrarse, iniciar sesión y gestionar contenido educativo de manera fácil y segura. Con un enfoque en la seguridad, "Learn-With-Me" utiliza la tecnología de Spring Framework y JWT (JSON Web Tokens) para garantizar la protección de los datos y la autenticación de los usuarios.
 
+# Detalles
 Características clave:
 
 Registro de Usuarios: "Learn-With-Me" facilita el proceso de registro de usuarios, permitiendo que nuevos estudiantes y profesores se unan a la plataforma de manera sencilla y rápida.
@@ -30,7 +31,7 @@ Seguimiento del Progreso: Los usuarios pueden realizar un seguimiento de su prog
 "Learn-With-Me" es la solución ideal para instituciones educativas, profesores independientes y estudiantes que buscan una plataforma de aprendizaje en línea versátil y segura. Con su robusta infraestructura de seguridad y sus funciones completas, esta API se esfuerza por crear un entorno de aprendizaje en línea efectivo y protegido para todos sus usuarios.
 
 
-# Detalles
+
 
 
 
@@ -54,9 +55,11 @@ Se utilizó la plataforma Railway para el deploy
 
 email:
 leonardovargasfp@gmail.com
+
 varela.ig98@gmail.com
 
 linkedin:
 https://www.linkedin.com/in/leonardo-vargas1/
+
 https://www.linkedin.com/in/ignaciovarela98/
 
